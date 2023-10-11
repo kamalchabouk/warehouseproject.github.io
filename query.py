@@ -9,15 +9,16 @@ for item in warehouse1:
 
 from data import warehouse1, warehouse2
 
-# YOUR CODE STARTS HERE
-def list_items_by_warehouse():
-    print("\nItems in Warehouse 1:")
-    for item in warehouse1:
-        print(item)
+"""Command line interface to query the stock.
 
-    print("\nItems in Warehouse 2:")
-    for item in warehouse2:
-        print(item)
+To iterate the source data you can use the following structure:
+
+for item in warehouse1:
+    # Your instructions here.
+    # The `item` name will contain each of the strings (item names) in the list.
+"""
+
+from data import warehouse1, warehouse2
 
 def search_and_place_order(item_name):
     total_amount = 0
@@ -41,7 +42,7 @@ def search_and_place_order(item_name):
     elif len(locations) == 2:
         print(f"Location: Both warehouses")
         max_location = max(set(locations), key=locations.count)
-        max_available = locations.count(max_location)
+        max_available = min(warehouse1.count(item_name), warehouse2.count(item_name))
         print(f"Maximum availability: {max_available} in {max_location}")
 
     order_choice = input("Would you like to order this item? (y/n) ").lower()
@@ -56,6 +57,7 @@ def search_and_place_order(item_name):
             max_order_choice = input("Would you like to order the maximum available? (y/n) ").lower()
             if max_order_choice == "y":
                 print(f"{total_amount} {item_name} have been ordered.")
+            
 
 def main():
     # Get the user name
@@ -83,6 +85,8 @@ def main():
             # Search an item and place an order
             item_name = input("Enter the item name to search: ")
             search_and_place_order(item_name)
+            print(f"Thank you for visiting, {user_name}!")
+            break
             # Else, if they pick 3
         elif choice == '3':
             # Quit
