@@ -107,7 +107,7 @@ def main():
                     print(f"List of {category} available:")
                     for item in stock:
                         if item["category"] == category:
-                            print(f"{item['state']}, Warehouse {item['warehouse']}")
+                            print(f"{item['state']}{category}, Warehouse {item['warehouse']}")
             print(f"Thank you for your visit, {user_name}!")
             break       
 
